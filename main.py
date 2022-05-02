@@ -185,8 +185,8 @@ def get_genre(genre):
 @app.route('/actor/<actor>', methods=['GET'])
 def get_actor(actor):
     try:
-        genre_string = '.*'+actor+".*"
-        contains_actor = db.reviews.find({"review_summary":{'$regex':genre_string, '$options':'-i'}},{"_id":0, "movie":1}).distinct("movie")
+        actor_string = '.*'+actor+".*"
+        contains_actor = db.reviews.find({"review_summary":{'$regex':actor_string, '$options':'-i'}},{"_id":0, "movie":1}).distinct("movie")
         respond = dumps(contains_actor)
         return respond
 
